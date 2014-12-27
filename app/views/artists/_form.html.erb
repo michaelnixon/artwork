@@ -1,0 +1,26 @@
+<%= form_for(@artist) do |f| %>
+  <% if @artist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
+
+      <ul>
+      <% @artist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field form-group">
+    <%= f.label :name, class: "control-label" %><br>
+    <%= f.text_field :name, class: "form-control" %>
+		<span class="help-block">(Provide a descriptive name for the artwork, likely its canonical title)</span>
+  </div>
+  <div class="field form-group">
+    <%= f.label :nationality, class: "control-label" %><br>
+    <%= f.text_field :nationality, class: "form-control" %>
+		<span class="help-block">(Describe the artist's nationality.)</span>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

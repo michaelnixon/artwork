@@ -1,0 +1,26 @@
+<% provide(:title, 'Listing Artists') %>
+<h1>Listing artists</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Nationality</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @artists.each do |artist| %>
+      <tr>
+        <td>	<%= link_to edit_link_html, edit_artist_path(artist) if current_user %> 
+							<%= link_to remove_link_html, artist, method: :delete, data: { confirm: 'Are you sure?' } if current_user %>
+							<%= link_to artist.name, artist_url(artist) %>
+				</td>
+        <td><%= artist.nationality %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to add_link_html("Create new artist"), new_artist_path if current_user %>

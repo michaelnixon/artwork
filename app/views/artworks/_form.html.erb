@@ -1,0 +1,68 @@
+<%= form_for @artwork, :html => { :multipart => true } do |f| %>
+  <% if @artwork.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@artwork.errors.count, "error") %> prohibited this artwork from being saved:</h2>
+
+      <ul>
+      <% @artwork.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label :name, class: "control-label" %><br>
+    <%= f.text_field :name, class: "form-control", placeholder: "Artwork name", required: "required" %>
+		<span class="help-block">(Provide a descriptive name for the artwork, likely its canonical title)</span>
+  </div>
+  <div class="field form-group">
+		<%= f.label :artist_id, class: "control-label"%><br/>
+		<%= f.collection_select :artist_id, Artist.all, :id, :name %>
+		<span class="help-block">You can manage the <%= link_to "artist list", artists_path %> separately</span>
+	</div>
+  <div class="field form-group">
+    <%= f.label :description, class: "control-label" %><br>
+    <%= f.text_area :description, size: "60x12", class: "form-control", placeholder: "Artwork description", required: "required" %>
+  </div>	
+  <div class="field form-group">
+    <%= f.label :start_date, class: "control-label" %>
+  	<div class="input-group date" style="width: 200px">
+    <%= f.text_field :start_date, class: "form-control" %><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+		</div>
+  </div>
+  <div class="field form-group">
+    <%= f.label :completion_date, class: "control-label" %>
+  	<div class="input-group date" style="width: 200px">
+    <%= f.text_field :completion_date, class: "form-control" %><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+		</div>
+  </div>
+	<script type="text/javascript">
+	  $(document).ready(function(){
+	    $('.input-group.date').datepicker({
+	    format: "yyyy-mm-dd",
+	    todayBtn: "linked",
+	    autoclose: true,
+	    todayHighlight: true
+	    });
+	  })
+	</script>
+  <div class="field form-group">
+    <%= f.label :dimensions, class: "control-label" %><br>
+    <%= f.text_field :dimensions, class: "form-control" %>
+		<span class="help-block">(Describe the dimensions of the artwork. e.g. 120"x60")</span>
+  </div>
+  <div class="field form-group">
+    <%= f.label :gallery_info, class: "control-label" %><br>
+    <%= f.text_field :gallery_info, class: "form-control" %>
+		<span class="help-block">(Describe where the artwork is being hold. e.g. Name of Collection or Gallery or Museum.)</span>
+  </div>
+  <div class="field form-group">
+		<%= f.label :asset %><br/>
+		<%= f.file_field :asset %>
+		<%= image_tag(@artwork.asset.url(:thumb)) if @artwork.asset?%>
+	</div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
