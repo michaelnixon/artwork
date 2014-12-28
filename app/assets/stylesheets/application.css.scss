@@ -24,3 +24,11 @@ body { padding-top: 60px; }
 			 font-url('glyphicons-halflings-regular.ttf') format('truetype'), 
 			 font-url('glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
+
+ul#artwork_tag_context_form {
+	padding-left: 0px;
+	margin-left: 0px;
+}
+ul#artwork_tag_context_form li {
+	list-style: none;	
+}

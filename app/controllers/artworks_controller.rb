@@ -19,6 +19,7 @@ class ArtworksController < ApplicationController
 
   # GET /artworks/1/edit
   def edit
+
   end
 
   # POST /artworks
@@ -69,6 +70,7 @@ class ArtworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artwork_params
-      params.require(:artwork).permit(:name, :artist_id, :start_date, :completion_date, :dimensions, :gallery_info, :asset, :description)      
+      # params.require(:artwork).permit(:name, :artist_id, :start_date, :completion_date, :dimensions, :gallery_info, :asset, :description, :custom_tags)      
+      params.require(:artwork).permit!
     end
 end

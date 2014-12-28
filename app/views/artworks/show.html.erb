@@ -26,7 +26,12 @@
 			<p>
 			  <strong>Gallery Info: </strong>
 			  <%= @artwork.gallery_info %>
-			</p>			
+			</p>
+			<% @artwork.tag_context_list.each do |context| %>		
+				<p>	
+				<strong><%= context.capitalize %>:</strong> <%= @artwork.tag_list_content_on(context) %>
+				</p>
+			<% end %>
 		</div>
 		<div class="col-md-3">	
 			<h3>Artist:</h3>

@@ -41,5 +41,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "paperclip", "~> 4.2"
 gem 'bootstrap-datepicker-rails'
-# gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 3.4'
 # gem 'rubyzip'
+gem 'handlebars_assets'
+gem 'inflection-js-rails'
+gem 'jquery-turbolinks'

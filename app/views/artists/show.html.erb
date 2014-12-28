@@ -1,8 +1,11 @@
 <% provide(:title, "Artist: #{@artist.name}") %>
-<h1>Artist: <%= @artist.name %></h1>
+<h1>Artist: <%= @artist.name %><% if current_user %> <small><%= link_to edit_link_html('Edit'), edit_artist_path(@artist) %></small><% end %></h1>
 <p id="notice"><%= notice %></p>
+<p><strong>Name: </strong>
+	<%= @artist.name%>
+</p>
+<p><strong>Nationality: </strong>
+	<%= @artist.nationality%>
+</p>
 
-
-
-<%= link_to 'Edit', edit_artist_path(@artist) %> |
 <%= link_to 'Back', artists_path %>
