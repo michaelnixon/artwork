@@ -1,0 +1,14 @@
+<tr>
+  <td><%= link_to edit_link_html, edit_artwork_path(artwork) if current_user %>
+			<%= link_to remove_link_html, artwork, method: :delete, data: { confirm: 'Are you sure?' } if current_user %>
+			<%= link_to artwork.name, artwork_path(artwork) %> <%= check_box_tag("includeds[]", artwork.id, false, :style => "float: right")%></td>
+  <td><%= truncate(artwork.description, length: 40) %></td>
+	<td><%= artwork.start_date %></td>
+	<td><%= artwork.completion_date %></td>
+	<td><%= artwork.dimensions %></td>
+	<td><%= artwork.gallery_info %></td>
+	<td><%= link_to truncate(artwork.artist.name, length: 40), artist_path(artwork.artist) %></td>
+	<% artwork.tag_context_list.each do |context| %>
+		<td><%= artwork.tag_list_content_on(context) %></td>
+	<% end %>
+</tr>

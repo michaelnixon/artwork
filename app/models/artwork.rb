@@ -5,8 +5,15 @@ class Artwork < ActiveRecord::Base
   has_attached_file :asset, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :asset, :content_type => /\Aimage\/.*\Z/
   
-  
-   ##
+  # uses SQL like to determine if the name or preview text matches the search term
+  def self.search(search)
+    if search
+      where("name like ? or description like ?", "%#{search}%", "%#{search}%") 
+    else
+      all
+    end
+  end  
+  ##
   # Return an array of context names which are valid for the given model type
   #
   # Example:

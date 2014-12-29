@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/404' => 'errors#not_found'
   get '/500' => 'errors#internal_error'
   get '/422' => 'errors#unprocessable_entity'  
+  get "artworks/export"
   resources :artworks
   resources :artists
   get "log_out" => "sessions#destroy", :as => "log_out"
