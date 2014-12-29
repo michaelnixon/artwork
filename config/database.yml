@@ -27,5 +27,9 @@ staging:
   password: DzyjrV
   socket: /var/lib/mysql/mysql.sock
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: mysql
+  database: artwork_db
+  hostname: 127.0.0.1
+  username: mnmfiles
+  password: DzyjrV
+  socket: /var/lib/mysql/mysql.sock
