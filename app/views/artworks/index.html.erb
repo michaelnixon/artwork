@@ -11,7 +11,7 @@
       <th>Dimensions</th>
       <th>Gallery Info</th>
 			<th>Artist</th>
-			<% Artwork.first.tag_context_list.each do |context| %>		
+			<% Artwork.tag_context_list.each do |context| %>		
 				<th><%= context.capitalize %></th>
 			<% end %>
     </tr>

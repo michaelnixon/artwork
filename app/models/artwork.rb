@@ -24,6 +24,10 @@ class Artwork < ActiveRecord::Base
     ActsAsTaggableOn::Tagging.where("taggable_type = '#{self.class.name}'").select(:context).uniq.map(&:context)
   end
   
+  def self.tag_context_list
+    ActsAsTaggableOn::Tagging.where("taggable_type = '#{self.name}'").select(:context).uniq.map(&:context)    
+  end
+  
   # the following instance methods are from https://github.com/dei79/acts-as-taggable-on-dynamic/blob/master/lib/acts_as_taggable_on_dynamic/dynamic_tag_context_attributes.rb
   ##
   # Returns a text string which returns generates the list attribute given by the context name for taggings
