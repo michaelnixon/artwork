@@ -1,5 +1,5 @@
 class Mailer < ActionMailer::Base
-  default from: "admin@movingstories.ca"
+  default from: "admin@foo.bar"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -10,6 +10,7 @@ class Mailer < ActionMailer::Base
     @email = user.email
     @alias = user.alias
     @new_password = new_password
-    mail to: @email, subject: "New password for Moving Stories database"
+    @login_url = "http://localhost:3000/sessions/new"
+    mail to: @email, subject: "New password for artwork database"
   end
 end
