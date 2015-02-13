@@ -111,4 +111,73 @@ class Artwork < ActiveRecord::Base
     # end
   end
   
+  def self.import(file)
+    CSV.foreach(file, headers: true, skip_blanks: true) do |row|
+      owner_email = row['owner_email']
+      owner_email = "sdipaola@sfu.ca" if owner_email.blank?
+      
+      # unless they already exist, create the account and send them the email
+      unless owner = User.find_by_email(owner_email)
+        random_password = Array.new(10).map { (65 + rand(58)).chr }.join
+        random_password += "1$" # stupid kludge to make it accepted by the acceptable password regex
+        owner = User.create(email: owner_email, password: random_password, password_confirmation: random_password)
+        Mailer.forgot_password(owner, random_password).deliver
+      end            
+          
+      artist_name = row['artist_slug'].strip.gsub(/-/,'_').humanize.titleize
+      unless artist_name.empty?
+        artist = Artist.find_by_name(artist_name) || Artist.create(name: artist_name)
+      end     
+
+      if row['name'].blank?
+        artwork_name = "Painting by #{artist_name}"
+      else
+      artwork_name = row['name'].strip        
+      end
+      
+      artwork = Artwork.find_by_name(artwork_name) || Artwork.create(name: artwork_name)
+      artwork.name = artwork_name
+      artwork.completion_date = row['date']
+      artwork.artist = artist
+      artwork.owner = owner
+            
+      artwork.save!
+            
+      unless row['keywords'].blank?
+        keywords = row['keywords']
+        keywords[0]=''
+        keywords[-1]=''
+        all_keywords = keywords.split(',  ')
+        keys = all_keywords.join(',')
+        artwork.set_tag_list_on("keywords", keys)
+      end
+      #dimensions
+      #gallery info
+      #artist
+      #description
+      
+      ##genre
+      ##style
+      ##technique
+      ##keywords     
+      
+      artwork.genre_list = row['genre']
+      artwork.style_list = row['style']
+      artwork.technique_list = row['technique'] unless row['technique'].blank?
+            
+      unless row['image_url'].blank? 
+        begin #todo ensure File.open uses a url
+          # asset = Asset.new(:file => File.open(row['image_url']))
+          # asset.attachable = track
+          # asset.save!
+#          artwork.asset = asset
+          artwork.asset = URI.parse(row['image_url'])
+        rescue
+          puts "failed on #{row['image_url']}"
+        end
+      end
+      artwork.save!
+
+    end
+  end
 end

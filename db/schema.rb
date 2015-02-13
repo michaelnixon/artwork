@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141227051607) do
+ActiveRecord::Schema.define(version: 20150213000158) do
 
   create_table "artists", force: true do |t|
     t.string   "name"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20141227051607) do
 
   create_table "artworks", force: true do |t|
     t.string   "name"
-    t.date     "start_date"
-    t.date     "completion_date"
+    t.string   "start_date"
+    t.string   "completion_date"
     t.string   "dimensions"
     t.string   "gallery_info"
     t.datetime "created_at"

@@ -8,7 +8,7 @@
 	<td><%= artwork.dimensions %></td>
 	<td><%= artwork.gallery_info %></td>
 	<td><%= link_to truncate(artwork.artist.name, length: 40), artist_path(artwork.artist) %></td>
-	<% artwork.tag_context_list.each do |context| %>
+			<% artwork.tag_context_list.each do |context| %>
 		<td><%= artwork.tag_list_content_on(context) %></td>
 	<% end %>
 </tr>
