@@ -17,7 +17,7 @@
 
 server 'ivizlab.sfu.ca', user: 'mna32', roles: %w{web app}, :primary => true
 set :deploy_to, '/var/www/artwork'
-# set :user, "mna32"
+set :user, "mna32"
 
 # Custom SSH Options
 # ==================
