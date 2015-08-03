@@ -176,8 +176,11 @@ class Artwork < ActiveRecord::Base
           puts "failed on #{row['image_url']}"
         end
       end
-      artwork.save!
-
+      begin
+        artwork.save!
+      rescue
+        puts "failed on #{row['image_url']}"
+      end
     end
   end
 end
