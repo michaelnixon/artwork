@@ -165,7 +165,7 @@ class Artwork < ActiveRecord::Base
       artwork.style_list = row['style']
       artwork.technique_list = row['technique'] unless row['technique'].blank?
             
-      unless row['image_url'].blank? or previously_uploaded?
+      unless row['image_url'].blank? or previously_uploaded
         begin #todo ensure File.open uses a url
           # asset = Asset.new(:file => File.open(row['image_url']))
           # asset.attachable = track
