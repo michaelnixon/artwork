@@ -6,11 +6,16 @@ $(document).ready(function () {
 		$(this).parent().find("i").toggleClass('glyphicon-collapse-down glyphicon-collapse-up');
 	});
 	$('#mytracks').dataTable({
-	  // ajax: ...,
-	  // autoWidth: false,
-	  // pagingType: 'full_numbers',
-	  // processing: true,
-	  // serverSide: true,
+    "processing": true,
+    "serverSide": true,
+		"bDeferRender": true,
+		"bSortClasses": false,
+    "ajax": $('#mytracks').data('source'),
+    "pagingType": "full_numbers",
+    "columnDefs": [{
+        "bSortable": false,
+        "aTargets": ['nosort']
+    		}]
 
 	  // Optional, if you want full pagination controls.
 	  // Check dataTables documentation to learn more about available options.

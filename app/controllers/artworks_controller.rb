@@ -9,6 +9,12 @@ class ArtworksController < ApplicationController
     @artworks = (Artwork.search(params[:search]) + Artwork.tagged_with(params[:search], :any => true)).uniq
   end
 
+  def index_data_tables
+    respond_to do |format|
+      format.json { render json: ::ArtworkDatatable.new(view_context)}
+    end    
+  end
+
   # GET /artworks/1
   # GET /artworks/1.json
   def show

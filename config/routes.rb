@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get "sign_up" => "users#new", :as => "sign_up"
   resources :users, except: [:index]
+  get "artworks_ajax" => "artworks#index_data_tables", :as => "artworks_ajax"  
   # get "password_resets/new"
   resources :password_resets, except: [:index]  
   get "pages/about"
