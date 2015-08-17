@@ -41,6 +41,7 @@ gem 'capistrano-rails', group: :development
 gem 'thin', group: :development
 gem "paperclip", "~> 4.2"
 gem 'bootstrap-datepicker-rails'
+gem 'capistrano-passenger'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'rubyzip'
 gem 'handlebars_assets'

@@ -1,5 +1,6 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
+# lock '3.2.1'
+set :passenger_restart_with_touch, true # new update on how to restart passenger
 
 set :application, 'artworks_db'
 set :repo_url, 'git@github.com:michaelnixon/artwork.git'

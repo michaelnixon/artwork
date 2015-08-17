@@ -8,6 +8,7 @@ class ArtworkDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # dynamic_columns = Artwork.tag_context_list.map {|tag| "Artwork.tag_list_content_on('#{tag}')"}   
+    # sorting may not work since the tag relationship includes all of them and then they're put into an order even though they're spread between columns
     dynamic_columns = Artwork.tag_context_list.map {|tag| 'ActsAsTaggableOn::Tag.name'}   
     # Declare strings in this format: ModelName.column_name
     @sortable_columns ||= ['Artwork.name', 'Artwork.description', 'Artwork.start_date', 'Artwork.completion_date', 'Artwork.dimensions', 
