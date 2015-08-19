@@ -22,6 +22,7 @@ module ArtworkDb
     # config.i18n.default_locale = :de
     ActsAsTaggableOn.force_lowercase = true
     ActsAsTaggableOn.remove_unused_tags = true    
+    config.encoding = "utf-8"    
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)  
     config.exceptions_app = self.routes      

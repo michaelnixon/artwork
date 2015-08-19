@@ -2,3 +2,5 @@
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
 require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
+
+ENV['LC_ALL'] ||= "en_US.UTF-8"
