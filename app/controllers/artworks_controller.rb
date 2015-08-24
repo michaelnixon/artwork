@@ -11,7 +11,7 @@ class ArtworksController < ApplicationController
 
   def index_data_tables
     respond_to do |format|
-      format.json { render json: ::ArtworkDatatable.new(view_context)}
+      format.json { render json: JSON::dump(ArtworkDatatable.new(view_context))}
     end    
   end
 
