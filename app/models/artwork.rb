@@ -125,6 +125,7 @@ class Artwork < ActiveRecord::Base
       end            
           
       artist_name = row['artist_slug'].strip.gsub(/-/,'_').humanize.titleize
+      artist_name = artist_name.force_encoding('iso-8859-1').encode('utf-8')
       unless artist_name.empty?
         artist = Artist.find_by_name(artist_name) || Artist.create(name: artist_name)
       end     
@@ -132,7 +133,8 @@ class Artwork < ActiveRecord::Base
       if row['name'].blank?
         artwork_name = "Painting by #{artist_name}"
       else
-      artwork_name = row['name'].strip        
+        artwork_name = row['name'].strip 
+        artwork_name = artwork_name.force_encoding('iso-8859-1').encode('utf-8')       
       end
       previously_uploaded = true if Artwork.find_by_name(artwork_name)
       artwork = Artwork.find_by_name(artwork_name) || Artwork.create(name: artwork_name)
@@ -144,7 +146,7 @@ class Artwork < ActiveRecord::Base
       artwork.save!
             
       unless row['keywords'].blank?
-        keywords = row['keywords']
+        keywords = row['keywords'].force_encoding('iso-8859-1').encode('utf-8')
         keywords[0]=''
         keywords[-1]=''
         all_keywords = keywords.split(',  ')
@@ -161,9 +163,9 @@ class Artwork < ActiveRecord::Base
       ##technique
       ##keywords     
       
-      artwork.genre_list = row['genre']
-      artwork.style_list = row['style']
-      artwork.technique_list = row['technique'] unless row['technique'].blank?
+      artwork.genre_list = row['genre'].force_encoding('iso-8859-1').encode('utf-8')
+      artwork.style_list = row['style'].force_encoding('iso-8859-1').encode('utf-8')
+      artwork.technique_list = row['technique'].force_encoding('iso-8859-1').encode('utf-8') unless row['technique'].blank?
             
       unless row['image_url'].blank? or previously_uploaded
         begin #todo ensure File.open uses a url
