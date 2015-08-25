@@ -175,7 +175,7 @@ class Artwork < ActiveRecord::Base
 #          artwork.asset = asset
           artwork.asset = URI.parse(row['image_url'])
         rescue
-          puts "failed on #{row['image_url']}"
+          puts "upload failed on #{row['image_url']}"
         end
       end
       begin
