@@ -112,7 +112,7 @@ class Artwork < ActiveRecord::Base
   end
   
   def self.import(file)
-    CSV.foreach(file, headers: true, skip_blanks: true) do |row|
+    CSV.foreach(file, encoding: Encoding::UTF_8, headers: true, skip_blanks: true) do |row|
       owner_email = row['owner_email']
       owner_email = "sdipaola@sfu.ca" if owner_email.blank?
       
