@@ -7,7 +7,8 @@ class ArtworksController < ApplicationController
   # param :search, String, "A search parameter to refine terms"  
   def index
     # @artworks = (Artwork.search(params[:search]) + Artwork.tagged_with(params[:search], :any => true)).uniq
-    @artworks = Artwork.all.limit(10)
+    # @artworks = Artwork.all.limit(10)
+    @artworks = Artwork.includes(:artist, :base_tags).references(:artist, :base_tags)
   end
 
   def index_data_tables
