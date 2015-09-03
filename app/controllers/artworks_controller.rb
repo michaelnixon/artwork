@@ -6,8 +6,7 @@ class ArtworksController < ApplicationController
   # GET /artworks.json
   # param :search, String, "A search parameter to refine terms"  
   def index
-    # @artworks = (Artwork.search(params[:search]) + Artwork.tagged_with(params[:search], :any => true)).uniq
-    @artworks = Artwork.all
+    @artworks = (Artwork.search(params[:search]) + Artwork.tagged_with(params[:search], :any => true)).uniq
   end
 
   def index_data_tables
