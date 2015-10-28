@@ -11,6 +11,10 @@ class ArtworksController < ApplicationController
     @artworks = Artwork.includes(:artist, :base_tags).references(:artist, :base_tags)
   end
 
+  def advanced_search
+    
+  end
+  
   def index_data_tables
     respond_to do |format|
       format.json { render json: ArtworkDatatable.new(view_context)}

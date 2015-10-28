@@ -40,6 +40,7 @@ gem 'capistrano-rails', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'thin', group: :development
+gem "bullet", group: :development
 gem "paperclip", "~> 4.2"
 gem 'bootstrap-datepicker-rails'
 gem 'capistrano-passenger'

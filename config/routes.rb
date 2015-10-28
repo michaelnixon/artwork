@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # get 'searches/new'
   root 'artworks#index'
   get '/404' => 'errors#not_found'
   get '/500' => 'errors#internal_error'
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   get "artworks/export"
   resources :artworks
   resources :artists
+  resources :searches
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   resources :sessions, only: [:new, :create, :destroy]

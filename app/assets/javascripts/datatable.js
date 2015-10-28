@@ -5,6 +5,9 @@ $(document).ready(function () {
 	$('.panel-collapse').on('hide.bs.collapse', function(){
 		$(this).parent().find("i").toggleClass('glyphicon-collapse-down glyphicon-collapse-up');
 	});
+	$('#results').DataTable({
+		
+		});
 	$('#mytracks').dataTable({
 	    "processing": true,
 	    "serverSide": true,
