@@ -8,7 +8,7 @@ class ArtworksController < ApplicationController
   def index
     # @artworks = (Artwork.search(params[:search]) + Artwork.tagged_with(params[:search], :any => true)).uniq
     # @artworks = Artwork.all.limit(10)
-    @artworks = Artwork.includes(:artist, :base_tags).references(:artist, :base_tags)
+    @artworks = Artwork.includes(:artist, :base_tags).references(:artist, :base_tags).limit(10)
   end
 
   def advanced_search
